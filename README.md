@@ -39,7 +39,36 @@ wavplayer package 遵循 Apache 2.0 许可，详见 `LICENSE` 文件。
 
 ## 2. 使用
 
-wavplayer 的常用功能已经导出到 Finsh 命令行，下面是使用示例。
+wavplayer 的常用功能已经导出到 Finsh 命令行，以便开发者测试和使用。命令主要分为播放和录音两个类别，分别提供不同的功能。
+
+**播放命令提供的功能如下 **
+
+```shell
+msh />wavplay -help
+usage: wavplay [option] [target] ...
+
+usage options:
+  -h,     --help                     Print defined help message.
+  -s URI, --start=URI                Play wav music with URI(local files).
+  -t,     --stop                     Stop playing music.
+  -p,     --pause                    Pause the music.
+  -r,     --resume                   Resume the music.
+  -v lvl, --volume=lvl               Change the volume(0~99).
+  -d,     --dump                     Dump play relevant information.
+```
+
+**录音命令提供的功能如下**
+
+```shell
+msh />wavrecord -h
+usage: wavrecord [option] [target] ...
+
+usage options:
+  -h,     --help                        Print defined help message.
+  -s file --start=file  <samplerate> <channels> <samplefmt> 
+                                        record wav music to filesystem.
+  -t,     --stop                        Stop record.
+```
 
 ### 2.1 播放功能
 
