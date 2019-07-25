@@ -249,16 +249,16 @@ static rt_err_t wavplayer_open(struct wavplayer *player)
     wavheader_read(&wav, player->fp);
 
     rt_kprintf("Information:\n");
-    rt_kprintf("sampletate %d\n", wav.fmt_sample_rate);
+    rt_kprintf("samplerate %d\n", wav.fmt_sample_rate);
     rt_kprintf("channels %d\n", wav.fmt_channels);
     rt_kprintf("sample bits width %d\n", wav.fmt_bit_per_sample);
 
-    /* set sampletate,channels, samplefmt */
+    /* set sampletate,channels, samplebits */
     caps.main_type = AUDIO_TYPE_OUTPUT;
     caps.sub_type  = AUDIO_DSP_PARAM;
     caps.udata.config.samplerate = wav.fmt_sample_rate;
     caps.udata.config.channels = wav.fmt_channels;
-    caps.udata.config.samplefmt = AUDIO_FMT_PCM_S16_LE;
+    caps.udata.config.samplebits = wav.fmt_bit_per_sample;
     rt_device_control(player->device, AUDIO_CTL_CONFIGURE, &caps);
 
     /* set volume according to configuration */
