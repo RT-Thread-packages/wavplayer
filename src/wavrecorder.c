@@ -163,12 +163,12 @@ static void wavrecord_entry(void *parameter)
     rt_kprintf("sampletate %d\n", record.info.samplerate);
     rt_kprintf("channels %d\n", record.info.channels);
 
-    /* set sampletate,channels, samplefmt */
+    /* set sampletate,channels, samplebits */
     caps.main_type = AUDIO_TYPE_INPUT;
     caps.sub_type  = AUDIO_DSP_PARAM;
     caps.udata.config.samplerate = record.info.samplerate;
     caps.udata.config.channels = record.info.channels;
-    caps.udata.config.samplefmt = AUDIO_FMT_PCM_S16_LE;
+    caps.udata.config.samplebits = 16;
     rt_device_control(record.device, AUDIO_CTL_CONFIGURE, &caps);
 
     LOG_D("ready to record, device %s, uri %s", PKG_WP_PLAY_DEVICE, record.uri);
@@ -220,7 +220,7 @@ rt_err_t wavrecorder_start(struct wavrecord_info *info)
 
         record.info.samplerate = info->samplerate;
         record.info.channels   = info->channels;
-        record.info.samplefmt  = info->samplefmt;
+        record.info.samplebits = info->samplebits;
 
         tid = rt_thread_create("wav_r", wavrecord_entry, RT_NULL, 2048, 19, 20);
         if (tid)

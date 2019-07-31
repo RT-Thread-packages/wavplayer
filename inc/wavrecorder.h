@@ -15,7 +15,7 @@ struct wavrecord_info
     char *uri;
     rt_uint32_t samplerate;
     rt_uint16_t channels;
-    rt_uint16_t samplefmt;
+    rt_uint16_t samplebits;
 };
 
 /**

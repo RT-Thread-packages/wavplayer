@@ -65,7 +65,7 @@ usage: wavrecord [option] [target] ...
 
 usage options:
   -h,     --help                        Print defined help message.
-  -s file --start=file  <samplerate> <channels> <samplefmt> 
+  -s file --start=file  <samplerate> <channels> <samplebits> 
                                         record wav music to filesystem.
   -t,     --stop                        Stop record.
 ```
@@ -103,7 +103,7 @@ msh />
 
 ```shell
 msh />
-msh />wavplay -p
+msh />wavplay -r
 msh />
 ```
 

@@ -25,7 +25,7 @@ struct wavrecord_args
     char *file;
     rt_uint16_t samplerate;
     rt_uint16_t channels;
-    rt_uint16_t samplefmt;
+    rt_uint16_t samplebits;
 };
 
 static struct optparse_long opts[] =
@@ -41,7 +41,7 @@ static void usage(void)
     rt_kprintf("usage: wavrecord [option] [target] ...\n\n");
     rt_kprintf("usage options:\n");
     rt_kprintf("  -h,     --help                        Print defined help message.\n");
-    rt_kprintf("  -s file --start=file  <samplerate> <channels> <samplefmt> \n");
+    rt_kprintf("  -s file --start=file  <samplerate> <channels> <samplebits> \n");
     rt_kprintf("                                        record wav music to filesystem.\n");
     rt_kprintf("  -t,     --stop                        Stop record.\n");
 }
@@ -74,7 +74,7 @@ int wavrecord_args_prase(int argc, char *argv[], struct wavrecord_args *record_a
             record_args->file = options.optarg;
             record_args->samplerate = ((argv[3] == RT_NULL) ? 8000 : atoi(argv[3]));
             record_args->channels = ((argv[4] == RT_NULL) ? 2 : atoi(argv[4]));
-            record_args->samplefmt = ((argv[5] == RT_NULL) ? 16 : atoi(argv[5]));
+            record_args->samplebits = ((argv[5] == RT_NULL) ? 16 : atoi(argv[5]));
             break;
 
         case 't':
@@ -113,7 +113,7 @@ int wav_recorder(int argc, char *argv[])
         info.uri = record_args.file;
         info.samplerate = record_args.samplerate;
         info.channels = record_args.channels;
-        info.samplefmt = record_args.samplefmt;
+        info.samplebits = record_args.samplebits;
         wavrecorder_start(&info);
         break;
 
