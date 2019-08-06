@@ -21,7 +21,7 @@
 #define WP_VOLUME_DEFAULT (55)
 #define WP_MSG_SIZE (10)
 #define WP_THREAD_STATCK_SIZE (2048)
-#define WP_THREAD_PRIORITY (21)
+#define WP_THREAD_PRIORITY (15)
 
 enum MSG_TYPE
 {
