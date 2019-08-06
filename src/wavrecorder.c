@@ -160,7 +160,7 @@ static void wavrecord_entry(void *parameter)
     fwrite(&wav, 44, 1, record.fp);
 
     rt_kprintf("Information:\n");
-    rt_kprintf("sampletate %d\n", record.info.samplerate);
+    rt_kprintf("samplerate %d\n", record.info.samplerate);
     rt_kprintf("channels %d\n", record.info.channels);
 
     /* set sampletate,channels, samplebits */
@@ -171,7 +171,7 @@ static void wavrecord_entry(void *parameter)
     caps.udata.config.samplebits = 16;
     rt_device_control(record.device, AUDIO_CTL_CONFIGURE, &caps);
 
-    LOG_D("ready to record, device %s, uri %s", PKG_WP_PLAY_DEVICE, record.uri);
+    LOG_D("ready to record, device %s, uri %s", PKG_WP_PLAY_DEVICE, record.info.uri);
 
     while (1)
     {
