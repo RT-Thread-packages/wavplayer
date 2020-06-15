@@ -248,10 +248,10 @@ static rt_err_t wavplayer_open(struct wavplayer *player)
     /* read wavfile header information from file */
     wavheader_read(&wav, player->fp);
 
-    rt_kprintf("Information:\n");
-    rt_kprintf("samplerate %d\n", wav.fmt_sample_rate);
-    rt_kprintf("channels %d\n", wav.fmt_channels);
-    rt_kprintf("sample bits width %d\n", wav.fmt_bit_per_sample);
+    LOG_I("Information:\n");
+    LOG_I("samplerate %d\n", wav.fmt_sample_rate);
+    LOG_I("channels %d\n", wav.fmt_channels);
+    LOG_I("sample bits width %d\n", wav.fmt_bit_per_sample);
 
     /* set sampletate,channels, samplebits */
     caps.main_type = AUDIO_TYPE_OUTPUT;
