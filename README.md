@@ -1,78 +1,80 @@
 # wavplayer
 
-## 1. 简介
+[中文页](README_ZH.md) | English
 
-**wavplayer** 是一个简易的 wav 格式的音乐播放器，提供播放和录制 wav 文件的功能，支持播放、停止、暂停、恢复，以及音量调节等功能。
+## 1. Introduction
 
-### 1.1. 文件结构
+**wavplayer** is a simple wav format music player that provides functions for playing and recording wav files, supporting functions such as play, stop, pause, resume, and volume adjustment.
 
-| 文件夹 | 说明 |
+### 1.1. File structure
+
+| Folder | Description |
 | ---- | ---- |
-| src  | 核心源码，主要实现 wav 播放和录音，以及导出 Finsh 命令行 |
-| inc  | 头文件目录 |
+| src | Core source code, which mainly implements wav playback and recording, and export Finsh command line |
+| inc | Header file directory |
 
-### 1.2 许可证
+### 1.2 License
 
-wavplayer package 遵循 Apache 2.0 许可，详见 `LICENSE` 文件。
+The wavplayer package complies with the Apache 2.0 license, see the `LICENSE` file for details.
 
-### 1.3 依赖
+### 1.3 Dependency
 
 - RT-Thread 4.0+
-- RT-Thread Audio 驱动框架
-- optparse 命令行参数解析软件包
+- RT-Thread Audio driver framework
+- optparse command line parameter parsing package
 
-### 1.4 配置宏说明
+### 1.4 Configuration Macro Description
 
 ```shell
- --- WavPlayer: Minimal music player for wav file play and record.   
- [*]   Enable support for play                                       
- (sound0) The play device name                                       
- [*]   Enable support for record                                     
- (sound0) The record device name                                      
-       Version (v1.0.0)  --->  
+ --- WavPlayer: Minimal music player for wav file play and record.
+ [*] Enable support for play
+ (sound0) The play device name
+ [*] Enable support for record
+ (sound0) The record device name
+       Version (v1.0.0) --->
 ```
 
-**Enable support for play**：使能wav播放功能  
-**The play device name**：指定播放使用的声卡设备，默认`sound0`  
-**Enable support for record**：使能wav录音功能  
-**The record device name**：指定录音使用的声卡设备，默认和播放一致，使用`sound0`  
+**Enable support for play**: enable wav play function
+**The play device name**: Specify the sound card device used for playback, default `sound0`
+**Enable support for record**: enable wav recording function
+**The record device name**: Specify the sound card device used for recording, the default is the same as the playback, use `sound0`.
 
-## 2. 使用
+## 2. Use
 
-wavplayer 的常用功能已经导出到 Finsh 命令行，以便开发者测试和使用。命令主要分为播放和录音两个类别，分别提供不同的功能。
+Common functions of wavplayer have been exported to Finsh command line for developers to test and use. Commands are mainly divided into two categories: playback and recording, which provide different functions.
 
-**播放命令提供的功能如下 **
+**The functions provided by the play command are as follows**
 
 ```shell
 msh />wavplay -help
 usage: wavplay [option] [target] ...
 
 usage options:
-  -h,     --help                     Print defined help message.
-  -s URI, --start=URI                Play wav music with URI(local files).
-  -t,     --stop                     Stop playing music.
-  -p,     --pause                    Pause the music.
-  -r,     --resume                   Resume the music.
-  -v lvl, --volume=lvl               Change the volume(0~99).
-  -d,     --dump                     Dump play relevant information.
+  -h, --help Print defined help message.
+  -s URI, --start=URI Play wav music with URI(local files).
+  -t, --stop Stop playing music.
+  -p, --pause Pause the music.
+  -r, --resume Resume the music.
+  -v lvl, --volume=lvl Change the volume(0~99).
+  -d, --dump Dump play relevant information.
 ```
 
-**录音命令提供的功能如下**
+**The functions provided by the recording command are as follows**
 
 ```shell
 msh />wavrecord -h
 usage: wavrecord [option] [target] ...
 
 usage options:
-  -h,     --help                        Print defined help message.
-  -s file --start=file  <samplerate> <channels> <samplebits> 
+  -h, --help Print defined help message.
+  -s file --start=file <samplerate> <channels> <samplebits>
                                         record wav music to filesystem.
-  -t,     --stop                        Stop record.
+  -t, --stop Stop record.
 ```
 
-### 2.1 播放功能
+### 2.1 Play function
 
-- 开始播放
+- Start playing
 
 ```shell
 msh />
@@ -84,14 +86,14 @@ sample bits width 16
 [I/WAV_PLAYER] play start, uri=song_44.wav
 ```
 
-- 停止播放
+- Stop play
 
 ```shell
 msh />wavplay -t
 [I/WAV_PLAYER] play end
 ```
 
-- 暂停播放
+- Pause playback
 
 ```shell
 msh />
@@ -99,7 +101,7 @@ msh />wavplay -p
 msh />
 ```
 
-- 恢复播放
+- Resume playback
 
 ```shell
 msh />
@@ -107,7 +109,7 @@ msh />wavplay -r
 msh />
 ```
 
-- 设置音量
+- Set volume
 
 ```shell
 msh />
@@ -115,9 +117,9 @@ msh />wavplay -v 88
 msh />
 ```
 
-### 2.2 录音功能
+### 2.2 Recording function
 
-- 开始录音
+- start recording
 
 ```shell
 msh />wavrecord -s test.wav
@@ -126,7 +128,7 @@ sampletate 8000
 channels 2
 ```
 
-- 停止录音
+- Stop recording
 
 ```shell
 msh />
@@ -134,11 +136,11 @@ msh />wavrecord -t
 msh />
 ```
 
-## 3. 注意事项
+## 3. Matters needing attention
 
-- 仅支持采样位数为 16bit 的音频
+- Only supports audio with 16bit sampling bits
 
-## 4. 联系方式
+## 4. Contact
 
-- 维护：Zero-Free
-- 主页：https://github.com/RT-Thread-packages/wavplayer
+- Maintenance: Zero-Free
+- Homepage: https://github.com/RT-Thread-packages/wavplayer
