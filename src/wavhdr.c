@@ -81,9 +81,9 @@ int wavheader_init(struct wav_header *header, int sample_rate, int channels, int
     header->fmt_compression_code = 1;
     header->fmt_channels = channels;
     header->fmt_sample_rate = sample_rate;
+    header->fmt_bit_per_sample = 16;
     header->fmt_avg_bytes_per_sec = header->fmt_sample_rate * header->fmt_channels * header->fmt_bit_per_sample / 8;
     header->fmt_block_align = header->fmt_bit_per_sample * header->fmt_channels / 8;
-    header->fmt_bit_per_sample = 16;
 
     memcpy(header->data_id, "data", 4);
     header->data_datasize = datasize;
