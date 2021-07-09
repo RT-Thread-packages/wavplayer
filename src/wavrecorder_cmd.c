@@ -23,7 +23,7 @@ struct wavrecord_args
 {
     int action;
     char *file;
-    rt_uint16_t samplerate;
+    rt_uint32_t samplerate;
     rt_uint16_t channels;
     rt_uint16_t samplebits;
 };
