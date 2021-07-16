@@ -370,7 +370,7 @@ static void wavplayer_entry(void *parameter)
         return;
     rt_memset(player.buffer, 0, WP_BUFFER_SIZE);
 
-    player.mq = rt_mq_create("wav_p", 10, sizeof(struct play_msg), RT_IPC_FLAG_FIFO);
+    player.mq = rt_mq_create("wav_p", sizeof(struct play_msg), 10, RT_IPC_FLAG_FIFO);
     if (player.mq == RT_NULL)
         goto __exit;
 
