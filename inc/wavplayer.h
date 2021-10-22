@@ -57,7 +57,7 @@ int wavplayer_pause(void);
 int wavplayer_resume(void);
 
 /**
- * @brief             Sev volume
+ * @brief             Set volume
  *
  * @param volume      volume value(0 ~ 99)
  *
@@ -70,7 +70,7 @@ int wavplayer_volume_set(int volume);
 /**
  * @brief             Get volume
  *
- * @return            volume value(0~00)
+ * @return            volume value(0 ~ 99)
  */
 int wavplayer_volume_get(void);
 
