@@ -9,6 +9,7 @@
 
 #include <wavhdr.h>
 #include <string.h>
+#include <rtthread.h>
 
 /* read and write integer from file stream */
 static int get_int(FILE *fp)
@@ -73,12 +74,12 @@ int wavheader_init(struct wav_header *header, int sample_rate, int channels, int
     if (header == NULL)
         return -1;
 
-    memcpy(header->riff_id, "RIFF", 4);
+    rt_memcpy(header->riff_id, "RIFF", 4);
     header->riff_datasize = datasize + 44 - 8;
 
-    memcpy(header->riff_type, "WAVE", 4);
+    rt_memcpy(header->riff_type, "WAVE", 4);
 
-    memcpy(header->fmt_id, "fmt ", 4);
+    rt_memcpy(header->fmt_id, "fmt ", 4);
     header->fmt_datasize = 16;
     header->fmt_compression_code = 1;
     header->fmt_channels = channels;
@@ -87,7 +88,7 @@ int wavheader_init(struct wav_header *header, int sample_rate, int channels, int
     header->fmt_avg_bytes_per_sec = header->fmt_sample_rate * header->fmt_channels * header->fmt_bit_per_sample / 8;
     header->fmt_block_align = header->fmt_bit_per_sample * header->fmt_channels / 8;
 
-    memcpy(header->data_id, "data", 4);
+    rt_memcpy(header->data_id, "data", 4);
     header->data_datasize = datasize;
 
     return 0;
@@ -139,17 +140,17 @@ int wavheader_write(struct wav_header *header, FILE *fp)
 
 void wavheader_print(struct wav_header *header)
 {
-    printf("header.riff_id: %c%c%c%c\n", header->riff_id[0], header->riff_id[1], header->riff_id[2], header->riff_id[3]);
-    printf("header.riff_datasize: %d\n", header->riff_datasize);
-    printf("header.riff_type: %c%c%c%c\n", header->riff_type[0], header->riff_type[1], header->riff_type[2], header->riff_type[3]);
-    printf("header.fmt_id: %c%c%c%c\n", header->fmt_id[0], header->fmt_id[1], header->fmt_id[2], header->fmt_id[3]);
-    printf("header.fmt_datasize: %d\n", header->fmt_datasize);
-    printf("header.fmt_compression_code: %hd\n", header->fmt_compression_code);
-    printf("header.fmt_channels: %hd\n", header->fmt_channels);
-    printf("header.fmt_sample_rate: %d\n", header->fmt_sample_rate);
-    printf("header.fmt_avg_bytes_per_sec: %d\n", header->fmt_avg_bytes_per_sec);
-    printf("header.fmt_block_align: %hd\n", header->fmt_block_align);
-    printf("header.fmt_bit_per_sample: %hd\n", header->fmt_bit_per_sample);
-    printf("header.data_id: %c%c%c%c\n", header->data_id[0], header->data_id[1], header->data_id[2], header->data_id[3]);
-    printf("header.data_datasize: %d\n", header->data_datasize);
+    rt_kprintf("header.riff_id: %c%c%c%c\n", header->riff_id[0], header->riff_id[1], header->riff_id[2], header->riff_id[3]);
+    rt_kprintf("header.riff_datasize: %d\n", header->riff_datasize);
+    rt_kprintf("header.riff_type: %c%c%c%c\n", header->riff_type[0], header->riff_type[1], header->riff_type[2], header->riff_type[3]);
+    rt_kprintf("header.fmt_id: %c%c%c%c\n", header->fmt_id[0], header->fmt_id[1], header->fmt_id[2], header->fmt_id[3]);
+    rt_kprintf("header.fmt_datasize: %d\n", header->fmt_datasize);
+    rt_kprintf("header.fmt_compression_code: %hd\n", header->fmt_compression_code);
+    rt_kprintf("header.fmt_channels: %hd\n", header->fmt_channels);
+    rt_kprintf("header.fmt_sample_rate: %d\n", header->fmt_sample_rate);
+    rt_kprintf("header.fmt_avg_bytes_per_sec: %d\n", header->fmt_avg_bytes_per_sec);
+    rt_kprintf("header.fmt_block_align: %hd\n", header->fmt_block_align);
+    rt_kprintf("header.fmt_bit_per_sample: %hd\n", header->fmt_bit_per_sample);
+    rt_kprintf("header.data_id: %c%c%c%c\n", header->data_id[0], header->data_id[1], header->data_id[2], header->data_id[3]);
+    rt_kprintf("header.data_datasize: %d\n", header->data_datasize);
 }
