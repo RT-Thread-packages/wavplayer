@@ -43,7 +43,7 @@ wavplayer package 遵循 Apache 2.0 许可，详见 `LICENSE` 文件。
 
 wavplayer 的常用功能已经导出到 Finsh 命令行，以便开发者测试和使用。命令主要分为播放和录音两个类别，分别提供不同的功能。
 
-**播放命令提供的功能如下 **
+**播放命令提供的功能如下**
 
 ```shell
 msh />wavplay -help
