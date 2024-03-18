@@ -315,7 +315,7 @@ static int wavplayer_event_handler(struct wavplayer *player, int timeout)
 #endif
 
     result = rt_mq_recv(player->mq, &msg, sizeof(struct play_msg), timeout);
-    #if RT_VERSION_CHECK(RT_VERSION_MAJOR,RT_VERSION_MINOR,RT_VERSION_PATCH) > 50000
+    #if RT_VER_NUM > 0x50000
     if (!result)
     #else
     if (RT_EOK != result)
