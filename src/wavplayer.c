@@ -308,19 +308,20 @@ static void wavplayer_close(struct wavplayer *player)
 static int wavplayer_event_handler(struct wavplayer *player, int timeout)
 {
     int event;
-    rt_err_t result;
     struct play_msg msg;
 #if (DBG_LEVEL >= DBG_LOG)
     rt_uint8_t last_state;
 #endif
-
-    result = rt_mq_recv(player->mq, &msg, sizeof(struct play_msg), timeout);
-    if (result != RT_EOK)
+    rt_ssize_t result = rt_mq_recv(player->mq, &msg, sizeof(struct play_msg), timeout);
+#if defined(RT_VERSION_CHECK) && (RTTHREAD_VERSION >= RT_VERSION_CHECK(5, 0, 1))
+    if (result <= 0)
+#else
+    if (RT_EOK != result)
+#endif
     {
         event = PLAYER_EVENT_NONE;
         return event;
     }
-
 #if (DBG_LEVEL >= DBG_LOG)
     last_state = player->state;
 #endif
