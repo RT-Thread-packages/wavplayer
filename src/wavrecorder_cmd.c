@@ -62,7 +62,7 @@ int wavrecord_args_prase(int argc, char *argv[], struct wavrecord_args *record_a
     }
 
     /* Parse cmd */
-    optparse_init(&options, argv);
+    optparse_init(&options, argc, argv);
     while ((ch = optparse_long(&options, opts, &option_index)) != -1)
     {
         switch (ch)
