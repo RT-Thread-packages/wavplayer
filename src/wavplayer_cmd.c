@@ -87,7 +87,7 @@ int wavplay_args_prase(int argc, char *argv[], struct wavplay_args *play_args)
     }
 
     /* Parse cmd */
-    optparse_init(&options, argv);
+    optparse_init(&options, argc, argv);
     while ((ch = optparse_long(&options, opts, &option_index)) != -1)
     {
         switch (ch)
